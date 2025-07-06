@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+requests
+openpyxl
+warnings
+streamlit
+pandas
+numpy
+plotly
