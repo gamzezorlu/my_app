@@ -423,7 +423,28 @@ if uploaded_file is not None:
                         use_container_width=True,
                         hide_index=True
                     )
-                    
+                    import pandas as pd
+import streamlit as st
+from io import BytesIO
+
+# Excel dosyasını belleğe yazmak için bir yardımcı fonksiyon
+def to_excel_bytes(df):
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='Şüpheli Tesisatlar')
+    return output.getvalue()
+
+# Excel olarak dönüştür
+excel_data = to_excel_bytes(suspicious_display)
+
+# İndirme butonu
+st.download_button(
+    label="📥 Şüpheli Tesisatları İndir (Excel)",
+    data=excel_data,
+    file_name="supheli_tesisatlar.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
                     # Excel indirme
                     csv = suspicious_display.to_csv(index=False)
                     st.download_button(
