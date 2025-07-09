@@ -424,25 +424,16 @@ if uploaded_file is not None:
                         hide_index=True
                     )
 
-                   # Excel'e dönüştürme fonksiyonu
-                   def to_excel_bytes(df):
-                   output = BytesIO()
-                   with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-                  df.to_excel(writer, index=False, sheet_name='Şüpheli Tesisatlar')
-                return output.getvalue()
-
-                # Excel verisini hazırla
-              excel_data = to_excel_bytes(suspicious_display)
-
-             # Excel indirme butonu
-           st.download_button(
-           label="📥 Şüpheli Tesisatları İndir (Excel)",
-           data=excel_data,
-          file_name="supheli_tesisatlar.xlsx",
-          mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  # Excel indirme
+                  csv = suspicious_display.to_csv(index=False)
+                  st.download_button(
+                  label="📥 Şüpheli Tesisatları İndir (CSV)",
+                  data=csv,
+                  file_name="supheli_tesisatlar.csv",
+                  mime="text/csv"
 )
-                else:
-                    st.success("🎉 Şüpheli tesisat bulunamadı!")
+                  else:
+                  st.success("🎉 Şüpheli tesisat bulunamadı!")
                 
                 # Tüm sonuçlar
                 st.subheader("📋 Tüm Sonuçlar")
