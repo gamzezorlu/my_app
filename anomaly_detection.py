@@ -424,16 +424,16 @@ if uploaded_file is not None:
                         hide_index=True
                     )
 
-                  # Excel indirme
-                  csv = suspicious_display.to_csv(index=False)
-                  st.download_button(
-                  label="📥 Şüpheli Tesisatları İndir (CSV)",
-                  data=csv,
-                  file_name="supheli_tesisatlar.csv",
-                  mime="text/csv"
+                   # Excel indirme
+                   csv = suspicious_display.to_csv(index=False)
+                   st.download_button(
+                   label="📥 Şüpheli Tesisatları İndir (CSV)",
+                   data=csv,
+                   file_name="supheli_tesisatlar.csv",
+                   mime="text/csv"
 )
-                  else:
-                  st.success("🎉 Şüpheli tesisat bulunamadı!")
+                   else:
+                   st.success("🎉 Şüpheli tesisat bulunamadı!")
                 
                 # Tüm sonuçlar
                 st.subheader("📋 Tüm Sonuçlar")
